@@ -1,0 +1,6 @@
+@import url(../blocks/page/page.css);
+@import url(../blocks/main/main.css);
+
+@import url(../blocks/sorter/sorter.css);
+@import url(../blocks/sorter/__item/sorter__item.css);
+@import url(../blocks/sorter/__item/_active/sorter__item_active.css);
