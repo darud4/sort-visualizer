@@ -75,12 +75,44 @@ export function sortInsert(arrayParam) {
     let saved = array[i];
     let j = i;
     while (j && array[j - 1] > saved) {
-      queue.push({ index1: j, index2: j - 1, action: 'shift', noRender: true });
+      queue.push({ index1: j, index2: j - 1, action: 'shift', noRender: false });
       array[j] = array[j - 1];
       j--;
     }
     array[j] = saved;
     queue.push({ action: 'set', index1: j, index2: saved });
   }
+  return queue;
+}
+
+
+export function sortQuick(arrayParam) {
+  const queue = [];
+  const array = [...arrayParam];
+
+  function recursive(array, low, high) {
+    if (low < high) {
+      const pivot = partition(array, low, high);
+      recursive(array, low, pivot - 1);
+      recursive(array, pivot + 1, high);
+    }
+  }
+
+  function partition(array, left, right) {
+    const pivot = array[right];
+    let less = left;
+    for (let i = less; i < right; i++) {
+      if (array[i] < pivot) {
+        [array[i], array[less]] = [array[less], array[i]];
+        queue.push({ index1: i, index2: less });
+        less++;
+      }
+    }
+    [array[right], array[less]] = [array[less], array[right]];
+    queue.push({ index1: right, index2: less });
+    return less;
+  }
+
+  if (array.length) recursive(array, 0, array.length - 1)
   return queue;
 }
