@@ -41,7 +41,7 @@ export default class Visualizer {
     const queue = callback(this._array);
     const array = this._array;
     while (queue.length > 0) {
-      const { index1, index2, action = 'swap' } = queue.shift();
+      const { index1, index2, action = 'swap', noRender = false } = queue.shift();
       switch (action) {
         case 'swap':
           [array[index1], array[index2]] = [array[index2], array[index1]];
@@ -53,8 +53,10 @@ export default class Visualizer {
           array[index1] = index2;
           break;
       }
-      this.render(index1, index2);
-      await this._wait(delay);
+      if (!noRender) {
+        this.render(index1, action === 'set' ? '' : index2);
+        await this._wait(delay);
+      }
     }
   }
 

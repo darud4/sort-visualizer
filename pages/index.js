@@ -11,7 +11,7 @@ const generateButton = document.querySelector('.button_type_generate');
 const method = sortInsert;
 
 generateButton.addEventListener('click', () => {
-  const arr = visualizer.generate(100);
+  const arr = visualizer.generate(30);
 });
 
-sortButton.addEventListener('click', () => { visualizer.drawQueue(method, 0); });
+sortButton.addEventListener('click', () => { visualizer.drawQueue(method, 50); });

@@ -75,7 +75,7 @@ export function sortInsert(arrayParam) {
     let saved = array[i];
     let j = i;
     while (j && array[j - 1] > saved) {
-      queue.push({ index1: j, index2: j - 1, action: 'shift' });
+      queue.push({ index1: j, index2: j - 1, action: 'shift', noRender: true });
       array[j] = array[j - 1];
       j--;
     }
